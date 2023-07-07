@@ -1,0 +1,16 @@
+<div class="container">
+  <div class="vh-100 d-flex flex-column justify-content-center align-items-center">
+    <h1>Welcome!</h1>
+    <form [formGroup]="signinForm" class="w-25 p-3" (ngSubmit)="onSubmit()">
+      <div class="mb-3">
+        <label for="email" class="form-label">Your email</label>
+        <input formControlName="email" type="email" class="form-control" id="email" placeholder="mario@miu.edu">
+      </div>
+      <div class="mb-3">
+        <label for="password" class="form-label">Your password</label>
+        <input formControlName="password" type="password" class="form-control" id="password" placeholder="*******">
+      </div>
+      <button type="submit" class="btn btn-primary">Sign in</button>
+    </form>
+  </div>
+</div>

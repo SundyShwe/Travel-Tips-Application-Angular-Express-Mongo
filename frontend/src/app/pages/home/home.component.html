@@ -1,0 +1,43 @@
+<div class="container-fluid pb-5">
+  <div class="row" *ngIf="myActivities && myActivities.length > 0">
+    <div class="col-md-10 offset-md-1">
+      <!-- <h1 class="display-6 pb-3">Total Activities: {{totalActivities}}</h1> -->
+      <div class="row">
+        <div class="col-md-4 pb-5"
+          *ngFor="let myActivity of myActivities | slice: (page-1) * pageSize : page * pageSize">
+          <div class="list-group">
+            <div class="list-group-item py-4">
+              <h4 class="list-group-item-header">
+                {{myActivity.city.name}}
+              </h4>
+              <!-- loop through items inside an activity list -->
+              <span *ngFor="let item of myActivity.items">
+                <div class="list-group-item-description" placement="top">
+                  # {{item.title}}
+                </div>
+                <small>
+                  {{item.description}}
+                </small>
+                <hr>
+              </span>
+              <div class="btn-toolbar" role="toolbar" aria-label="Toolbar with button groups">
+                <div class="btn-group me-2" role="group" aria-label="First group">
+                  <button class="btn btn-sm btn-success">Edit</button>
+                </div>
+                <div class="btn-group me-2" role="group" aria-label="Second group">
+                  <button (click)="onDelete(myActivity._id!)" class="btn btn-sm btn-danger">Delete</button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="row" *ngIf="myActivities && myActivities.length > 6">
+        <div class="col-md-12 d-flex justify-content-center">
+          <ngb-pagination [pageSize]="pageSize" [collectionSize]="total" [(page)]="page"
+            aria-label="Default pagination"></ngb-pagination>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,58 @@
+<!-- Header -->
+<div class="container-fluid pb-5">
+  <div class="row">
+    <div class="col-md-10 offset-md-1">
+      <nav class="navbar navbar-expand-lg bg-body-tertiary">
+        <div class="container-fluid">
+          <a class="navbar-brand" routerLink="/">TravelTips</a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown"
+            aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation"
+            (click)="toggleNavbar()">
+            <span class="navbar-toggler-icon"></span>
+          </button>
+
+          <div class="collapse navbar-collapse" id="navbarSupportedContent" *ngIf="state._id; else singIn"
+            [ngClass]="{ 'show': navbarOpen }">
+            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+              <li class="nav-item">
+                <a routerLink="/home" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"
+                  class="nav-link" aria-current="page"><fa-icon [icon]="faHouseChimneyWindow"></fa-icon>
+                  My List</a>
+              </li>
+              <li class="nav-item">
+                <a routerLink="/cities" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"
+                  class="nav-link"><fa-icon [icon]="faTreeCity"></fa-icon> Browse Cities</a>
+              </li>
+              <li class="nav-item">
+                <a routerLink="/add-activities" routerLinkActive="active" [routerLinkActiveOptions]="{exact: true}"
+                  class="nav-link"><fa-icon [icon]="faClipboardList"></fa-icon> Add Activities</a>
+              </li>
+            </ul>
+            <a class="nav-link dropdown-toggle" role="button" href="#" data-bs-toggle="dropdown" aria-expanded="false">
+              {{state.firstName}} {{state.lastName}}
+            </a>
+            <ul class="dropdown-menu dropdown-menu-end">
+              <li><a class="dropdown-item" (click)="goToProfile()"><fa-icon [icon]="faUser"></fa-icon> My
+                  Profile</a></li>
+              <li><a class="dropdown-item" (click)="signOut()"><fa-icon [icon]="faSquareArrowUpRight"></fa-icon> Sign
+                  Out</a></li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+    </div>
+  </div>
+</div>
+<!-- End Header -->
+<ng-template #singIn>
+  <div class="collapse navbar-collapse" id="navbarNavDropdown">
+    <ul class="navbar-nav ms-auto">
+      <li class="nav-item">
+        <a routerLink="/signin" class="nav-link">Sign In</a>
+      </li>
+      <li class="nav-item">
+        <a routerLink="/signup" class="nav-link">Sign Up</a>
+      </li>
+    </ul>
+  </div>
+</ng-template>

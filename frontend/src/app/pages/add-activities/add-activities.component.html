@@ -1,0 +1,69 @@
+<div class="container-fluid pb-5">
+  <div class="row">
+    <div class="col-md-10 offset-md-1">
+      <div class="row">
+        <div class="col-md-5">
+          <fieldset>
+            <legend>City:</legend>
+            <select class="form-select" (change)="onChange($event)" aria-describedby="cityHelp">
+              <option value="">Choose City</option>
+              <option *ngFor="let city of cities" [value]="city._id">
+                {{ city.name }}
+              </option>
+            </select>
+            <div id="cityHelp" class="form-text text-info">You'll need to select a city first.</div>
+          </fieldset>
+          <br><br>
+          <form [formGroup]="activityForm" (submit)="onSubmit(activityForm.value)">
+            <fieldset>
+              <legend>Activity:</legend>
+              <div class="mb-3">
+                <label class="form-label" for="title">Title</label>
+                <input class="form-control" type="text" id="title" name="title" placeholder="to eat pizza"
+                  formControlName="title" aria-describedby="titleHelp">
+                <div id="titleHelp" class="form-text text-info">You'll need to add a short title.</div>
+              </div>
+              <div class="mb-3">
+                <label class="form-label" for="description">Description</label>
+                <textarea class="form-control" type="description" id="description" name="description"
+                  placeholder="pizza with cheese, beef and pineapple" formControlName="description"></textarea>
+              </div>
+              <div class="mb-3">
+                <label class="form-label" for="category">Category</label>
+                <input class="form-control" type="text" id="category" name="category" placeholder="food"
+                  formControlName="category" aria-describedby="categoryHelp">
+                <div id="categoryHelp" class="form-text text-info">You'll need to add a category.</div>
+              </div>
+              <!-- <div class="mb-3 form-check">
+                <label class="form-label" for="completed">Completed</label>
+                <input class="form-check-input" type="checkbox" value="" id="completed" formControlName="completed">
+              </div> -->
+              <button class="btn btn-success">Add to list <fa-icon [icon]="faCircleArrowRight"></fa-icon></button>
+            </fieldset>
+          </form>
+        </div>
+        <div class="col-md-5 offset-md-2" *ngIf="cityName">
+          <div class="list-group">
+            <div class="list-group-item py-4">
+              <h4 class="list-group-item-header">
+                {{cityName}}
+              </h4>
+              <span *ngFor="let item of items; let i = index;">
+                <p class="list-group-item-description">
+                  # {{item.title}}
+                  <a (click)="onRemove(item._id)" style="float: right;"><fa-icon [icon]="faSquareXmark"></fa-icon></a>
+                </p>
+                <small>
+                  {{item.description}}
+                </small>
+                <hr>
+              </span>
+              <button *ngIf="cityName && items && items.length > 0" (click)="onSave()"
+                class="btn btn-success">Submit</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

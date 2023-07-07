@@ -1,0 +1,14 @@
+/* You can add global styles to this file, and also import other style files */
+.btn-primary {
+  background-color: #3780ed;
+  border-color: #3780ed;
+}
+
+.btn-success {
+  background-color: #37b71d;
+  border-color: #37b71d;
+}
+
+a:hover {
+  cursor: pointer;
+}

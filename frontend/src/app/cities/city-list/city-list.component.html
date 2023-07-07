@@ -1,0 +1,32 @@
+<div class="container-fluid">
+  <div class="row pb-5" *ngIf="cities && cities.length > 0">
+    <div class="col-md-10 offset-md-1">
+      <div class="row g-5">
+        <div class="col-4" *ngFor="let city of cities | slice: (page-1) * pageSize : page * pageSize">
+          <div class="card">
+            <a (click)="goToCity(city._id)" routerLinkActive="active">
+              <img src="../../../assets/austin.avif" class="card-img-top" alt="...">
+              <div class="card-body">
+                <h5 class="card-title">{{city.name | uppercase}}</h5>
+                <p class="card-text">
+                  {{city.state}}
+                  <br>
+                  <small>New York, often called New York City[a] or NYC, is the most populous city in the United States.
+                    With a 2020 population of 8,804,190 distributed over 300.46 square miles (778.2 km2), New York City
+                    is the most densely populated major city in the United States and more than twice as populous as Los
+                    Angeles, the nation's second-largest city...</small>
+                </p>
+              </div>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="row" *ngIf="cities && cities.length > 0">
+    <div class="col-md-12 d-flex justify-content-center">
+      <ngb-pagination [pageSize]="pageSize" [collectionSize]="total" [(page)]="page"
+        aria-label="Default pagination"></ngb-pagination>
+    </div>
+  </div>
+</div>

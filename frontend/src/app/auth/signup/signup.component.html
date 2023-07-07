@@ -1,0 +1,29 @@
+<div class="container">
+  <div class="vh-100 d-flex flex-column justify-content-center align-items-center">
+    <h1>Welcome!</h1>
+    <form [formGroup]="signupForm" class="w-25 p-3" (ngSubmit)="onSubmit()">
+      <div class="mb-3">
+        <label for="firstName" class="form-label">First name</label>
+        <input formControlName="firstName" type="text" class="form-control" id="firstName" placeholder="Captain Jack">
+      </div>
+      <div class="mb-3">
+        <label for="lastName" class="form-label">Last name</label>
+        <input formControlName="lastName" type="text" class="form-control" id="lastName" placeholder="Sparow">
+      </div>
+      <div class="mb-3">
+        <label for="email" class="form-label">Email</label>
+        <input formControlName="email" type="email" class="form-control" id="email" placeholder="mario@miu.edu">
+      </div>
+      <div class="mb-3">
+        <label for="password" class="form-label">Password</label>
+        <input formControlName="password" type="password" class="form-control" id="password" placeholder="*******">
+      </div>
+      <div class="mb-3">
+        <label for="confirmPassword" class="form-label">Confirm password</label>
+        <input formControlName="confirmPassword" type="password" class="form-control" id="confirmPassword"
+          placeholder="*******">
+      </div>
+      <button type="submit" class="btn btn-primary">Sign up</button>
+    </form>
+  </div>
+</div>

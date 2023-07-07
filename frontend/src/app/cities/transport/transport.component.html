@@ -1,0 +1,73 @@
+<section class="section about-section gray-bg" id="about">
+    <div class="container">
+        <div class="counter">
+            <div class="row">
+                <div class="col-md-6">
+                    <h3 class="dark-color" *ngIf="city && city.name &&transport">
+                        <a (click)="goToCity(city._id)">{{city.name}}</a> : {{transport.name}}
+                    </h3>
+                </div>
+                <div class="col-md-6">
+                    <button (click)=toggleDisplayDiv() style="float: right;">Add Review</button>
+                </div>
+
+
+            </div>
+        </div>
+        <div id="addRemark" class="counter" [hidden]="isShowDiv">
+            <div class="row bootstrap snippets bootdeys">
+                <div class="col-md-8 col-sm-12">
+                    <div class="comment-wrapper">
+                        <div class="panel panel-info">
+                            <div class="panel-body">
+                                <form [formGroup]="reviewForm" (ngSubmit)="onSubmit()">
+                                    <textarea formControlName="content" class="form-control"
+                                        placeholder="write a review..." rows="3"></textarea>
+                                    <br>
+                                    <button type="submit" class="btn btn-primary pull-right" style="float: right;"
+                                        [disabled]="!reviewForm.valid">Post</button>
+                                    <div class="clearfix"></div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+            </div>
+        </div>
+        <div class="row space-upper" *ngIf="reviews && reviews.length > 0">
+            <div class="profile">
+                <div class="panel panel-profile">
+                    <div class="panel-heading overflow-h">
+                        <ngb-pagination [pageSize]="pageSize" [collectionSize]="total" [(page)]="page"
+                            aria-label="Default pagination"></ngb-pagination>
+                    </div>
+                    <div class="panel-body">
+                        <div class="row">
+                            <div class="col-md-4"
+                                *ngFor="let review of reviews | slice: (page-1) * pageSize : page * pageSize">
+                                <div class="profile-blog blog-border">
+                                    <img class="rounded-x" src="../../../assets/avatar5.png" alt="">
+                                    <div class="name-location">
+                                        <strong>Maria Snort</strong>
+                                        <span>{{review.user_id}}</span>
+                                    </div>
+                                    <div class="clearfix margin-bottom-20"></div>
+                                    <p>{{review.content}}</p>
+                                    <hr>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+</section>
+
+<ng-template #defaultUser>
+    <img src="../../../assets/avatar3.png" style="width:100px;margin-top:-65px" alt="User"
+        class="img-fluid img-thumbnail rounded-circle border-0 mb-3">
+</ng-template>
